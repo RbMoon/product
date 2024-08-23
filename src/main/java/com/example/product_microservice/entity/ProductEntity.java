@@ -19,4 +19,5 @@ public class ProductEntity {
 	private String productDescription;
 	private Double unitPrice;
 	private String Condition;
+	private String Color;
 }
