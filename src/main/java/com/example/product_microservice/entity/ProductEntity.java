@@ -20,4 +20,5 @@ public class ProductEntity {
 	private Double unitPrice;
 	private String Condition;
 	private String Color;
+	private String size;
 }
