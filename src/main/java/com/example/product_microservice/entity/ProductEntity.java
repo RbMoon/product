@@ -18,7 +18,7 @@ public class ProductEntity {
 	private String productName;
 	private String productDescription;
 	private Double unitPrice;
-	private String Condition;
-	private String Color;
-	private String size;
+	private String marca;
+
+
 }
