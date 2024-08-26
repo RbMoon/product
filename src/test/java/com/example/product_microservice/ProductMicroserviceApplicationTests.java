@@ -8,6 +8,9 @@ class ProductMicroserviceApplicationTests {
 
 	@Test
 	void contextLoads() {
+
+
 		
+
 	}
 }
