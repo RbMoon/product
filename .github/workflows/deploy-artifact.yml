@@ -93,45 +93,46 @@ jobs:
     steps:
 
     #1.-  Instaran el emulador QEMU
-    - name : Set up QEMU
-      uses : docker/setup-qemu-action@v3
+    #- name : Set up QEMU
+    #  uses : docker/setup-qemu-action@v3
 
     #2.-  instalr docker buildx
-    - name : Set up Docker Buildx 
-      uses : docker/setup-buildx-action@v2
+    #- name : Set up Docker Buildx 
+    #  uses : docker/setup-buildx-action@v2
 
     #3.- login Docker Hub
-    - name : Login to Docker Hub
-      uses : docker/login-action@v2
-      with :
-        registry: ghcr.io
-        username: ${{ github.actor }}
-        password: ${{ secrets.TOKEN }}
-        logout: false
+    #- name : Login to Docker Hub
+    #  uses : docker/login-action@v2
+    #  with :
+    #    registry: ghcr.io
+    #    username: ${{ github.actor }}
+    #    password: ${{ secrets.TOKEN }}
+    #    logout: false
 
     #4.- Descarga artifact
-    - name:  Download artifact
-      uses:  actions/download-artifact@v4
-      with: 
-        name: dockerBuildContext
-        path: ./dockerBuildContext 
+    #- name:  Download artifact
+    #  uses:  actions/download-artifact@v4
+    #  with: 
+    #    name: dockerBuildContext
+    #    path: ./dockerBuildContext 
     
     #5.- Muestra la estructura
-    - name: Display structure of downloaded  files
-      run: ls -R dockerBuildContext
+    #- name: Display structure of downloaded  files
+    #  run: ls -R dockerBuildContext
 
      #6.- Muestra la estructura 
-    - name: Build and push image using action
-      uses: docker/build-push-action@v6
-      with: 
-        context:  ./dockerBuildContext # Ubicacion donde se almacenan los archivos dockerfile y artifact
-        file : ./dockerBuildContext/Dockerfile #Ubicacion del dockerfile
+    #- name: Build and push image using action
+    #  uses: docker/build-push-action@v6
+    #  with: 
+    #    context:  ./dockerBuildContext # Ubicacion donde se almacenan los archivos dockerfile y artifact
+    #    file : ./dockerBuildContext/Dockerfile #Ubicacion del dockerfile
         # parametros requeridos por el dockerfile
-        build-args:  |
-          JAR_FILE=${{ github.event.client_payload.artifact_name }} 
-          DB_PASSWORD=${{ secrets.DB_PASSWORD }}
-        push: true # Sube la imagen al registry, se encuentra en false por Default
-        tags: ghcr.io/${{ github.repository_owner}}/product:${{ github.sha }} #nombre completo de la imagen, incluye el repositorio, usuario, nombre de la imagen y tag
+   #     build-args:  |
+   #       JAR_FILE=${{ github.event.client_payload.artifact_name }} 
+   #       DB_PASSWORD=${{ secrets.DB_PASSWORD }}
+   #     push: true # Sube la imagen al registry, se encuentra en false por Default
+   #     tags: ghcr.io/${{ github.repository_owner}}/product:${{ github.sha }} #nombre completo de la imagen, incluye el repositorio, usuario, nombre de la imagen y tag
+    
     #7.- envia a AWS para despliegue
     - name: Configure AWS Credentials 
       uses: aws-actions/configure-aws-credentials@v1
