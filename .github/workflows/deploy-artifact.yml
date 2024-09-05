@@ -144,7 +144,8 @@ jobs:
     - name: Login to Amazon ECR
       id: login-ecr
       uses: aws-actions/amazon-ecr-login@v1
-
+    - name: Imprimir todas las variables de entorno
+      run: env
     - name: Build, tag, and push image to Amazon ECR
       id: build-image
       env:
