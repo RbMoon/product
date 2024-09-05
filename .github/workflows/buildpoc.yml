@@ -1,7 +1,7 @@
 name: build and test develop branch
 on: 
   pull_request:
-    branches: [ develop ]
+    branches: [ main ]
     types: [ opened, reopened ] 
 jobs: 
   build-feature:
